@@ -1,6 +1,9 @@
 import Image from 'next/image'
 import "bootstrap/dist/css/bootstrap.min.css"; // Import bootstrap CSS
+import { Container } from 'postcss';
 // import "../styles/globals.css";
+import Weather from "./getWeather"
+
 
 export default function Home() {
   return (
@@ -10,7 +13,19 @@ export default function Home() {
           The Kai Kassie House&nbsp;
         </h1>
       </div>
-      
+      <div className="container">
+        <div className="row">
+          <div className="col-sm">
+            <Weather />
+          </div>
+          <div className="col-sm">
+            One of three columns
+          </div>
+          <div className="col-sm">
+            One of three columns
+          </div>
+        </div>
+      </div>
     </main>
   )
 }
