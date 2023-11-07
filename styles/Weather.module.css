@@ -1,0 +1,12 @@
+.weatherContainer {
+    border: solid 2px gray;
+    border-radius: 1em;
+    background-color: lightgray;
+    margin: 1em;
+  }
+  
+  .weatherRow {
+    margin: 0;
+    padding: 0;
+  }
+  
