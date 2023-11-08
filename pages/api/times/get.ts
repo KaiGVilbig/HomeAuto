@@ -1,5 +1,6 @@
 import { connectMongo } from "@/utils"
 import { Time } from "@/models"
+import { timeForm } from "@/interfaces"
 
 /**
  * 
@@ -13,8 +14,9 @@ export default async function getTime(req: any, res: any) {
     await connectMongo()
     console.log('Connected to DB')
     console.log('Getting')
-    const time = await Time.findOne(req.body)
+    const time = await Time.find({})
     console.log('Got')
+    let formatted: Array<timeForm> = time;
 
-    res.json({ time })
+    res.json({ formatted })
 }

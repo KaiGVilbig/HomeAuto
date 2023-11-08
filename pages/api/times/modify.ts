@@ -14,14 +14,14 @@ export default async function modifyTime(req: any, res: any) {
     await connectMongo()
     console.log('Connected to DB')
     console.log('Getting')
-    const time = await Time.findOne(req.body, (err: any, time: any) => {
+    const time = await Time.findOne(req.body, async (err: any, time: any) => {
         if (err) return;
 
         time.date = req.body.date;
         time.meet = req.body.meet;
         time.unit = req.body.unit;
 
-        time.save()
+        await time.save()
     })
     console.log('Got')
 

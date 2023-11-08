@@ -1,14 +1,10 @@
 import {Schema, model, models} from 'mongoose';
 
-let names: Array<string> = ["Kassie", "Kai"]
-let units: Array<string> = ["Meters", "Yards"]
-let strokes: Array<string> = ["Freestyle", "Backstroke", "Breaststroke", "Butterfly"]
-
 const timeSchema = new Schema({
-    name: { type: String, enum: names, required: true },
+    name: { type: String, required: true },
     distance: { type: Number, required: true },
-    unit: { type: String, enum: units, required: true },
-    stroke: { type: String, enum: strokes, required: true },
+    unit: { type: String, required: true },
+    stroke: { type: String, required: true },
     time: {
         minutes: { type: Number, min: 0, max: 59, required: true },
         seconds: { type: Number, min: 0, max: 59, required: true },

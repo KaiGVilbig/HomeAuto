@@ -1,0 +1,10 @@
+.swimContainer {
+    border: solid 2px gray;
+    border-radius: 1em;
+    background-color: lightgray;
+}
+
+.title {
+    text-align: center;
+    margin-top: 1em
+}

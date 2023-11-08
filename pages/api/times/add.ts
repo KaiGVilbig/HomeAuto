@@ -13,7 +13,10 @@ export default async function addTime(req: any, res: any) {
     await connectMongo()
     console.log('Connected to DB')
     console.log('Sending')
-    const time = await Time.create(req.body)
+    let sendJSON = req.body.formData
+    let key: string = "_id"
+    delete sendJSON[key]
+    const time = await Time.create(sendJSON)
     console.log('Sent')
 
     res.json({ time })
