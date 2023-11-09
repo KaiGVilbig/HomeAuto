@@ -126,7 +126,7 @@ function forecast(day : any) {
 
     const [showDay, setShowDay] = useState(
         <div>
-            {getIcon(dayToShow[0].icon)}
+            {getIcon(dayToShow[0]?.icon)}
             <p>{dayToShow[0]?.shortForecast}</p>
             <p>{dayToShow[0]?.temperature}°</p>
         </div>

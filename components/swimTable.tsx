@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import { timeForm } from '@/interfaces'
 import {
     Table,
@@ -9,8 +9,16 @@ import {
     TableRow,
     TableCell
   } from "@nextui-org/react";
+import style from '@/styles/Swim.module.css'
 
-const headers: Array<string> = ["NAME", "STROKE", "DISTANCE", "UNIT", "TIME", "DATE", "AGE"]
+const headers = [
+    {key: "name", label: "NAME"}, 
+    {key: "stroke", label: "STROKE"}, 
+    {key: "distance", label: "DISTANCE"}, 
+    {key: "unit", label: "UNIT"}, 
+    {key: "time", label: "TIME"}, 
+    {key: "date", label: "DATE"},
+    {key: "age", label:  "AGE"}]
 
 function swimTable() {
 
@@ -37,25 +45,36 @@ function swimTable() {
         getTimes()
     }, [times, gotTimes])
 
+    const handleSort = (sortBy: string) => {
+        console.log(sortBy)
+    }
+
+    const classNames = useMemo(
+        () => ({
+            wrapper: ["max-h-[382px]", "max-w-3xl"],
+            table: [style.table],
+            thead: [style.head],
+            tbody: [style.body],
+        }), []
+    )
+
     return (
-        <Table isStriped>
-            <TableHeader>
-                {headers.map((header, index) => 
-                    <TableColumn key={index}>{header}</TableColumn>
-                )}
+        <Table removeWrapper classNames={classNames}>
+            <TableHeader columns={headers}>
+                {(column) => <TableColumn key={column.key} className={style.col}>{column.label}</TableColumn>}
             </TableHeader>
-            <TableBody emptyContent={"No rows to display."}>
+            <TableBody className={style.bod}>
                 {times.map((time, index) =>
-                    <TableRow key={index}>
-                        <TableCell>{time.name}</TableCell>
-                        <TableCell>{time.stroke}</TableCell>
-                        <TableCell>{String(time.distance)}</TableCell>
-                        <TableCell>{time.unit}</TableCell>
-                        <TableCell>{`${Number(time.time.minutes) > 0 ? `${time.time.minutes}:` : ''}${
+                    <TableRow key={index} className={style.row}>
+                        <TableCell className={style.td}>{time.name}</TableCell>
+                        <TableCell className={style.td}>{time.stroke}</TableCell>
+                        <TableCell className={style.td}>{String(time.distance)}</TableCell>
+                        <TableCell className={style.td}>{time.unit}</TableCell>
+                        <TableCell className={style.td}>{`${Number(time.time.minutes) > 0 ? `${time.time.minutes}:` : ''}${
                             Number(time.time.seconds) < 10 ? `0${time.time.seconds}` : time.time.seconds}.${
                             Number(time.time.miliseconds) < 10 ? `0${time.time.miliseconds}` : time.time.miliseconds}`}</TableCell>
-                        <TableCell>{`${time.date.month}/${time.date.day}/${time.date.year}`}</TableCell>
-                        <TableCell>{String(time.age)}</TableCell>
+                        <TableCell className={style.td}>{`${time.date.month}/${time.date.day}/${time.date.year}`}</TableCell>
+                        <TableCell className={style.td}>{String(time.age)}</TableCell>
                     </TableRow>
                 )}
             </TableBody>

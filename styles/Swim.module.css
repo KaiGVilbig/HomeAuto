@@ -6,5 +6,62 @@
 
 .title {
     text-align: center;
-    margin-top: 1em
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.table {
+    background-color: rgba(128, 128, 128, 0.205);
+    border-radius: 1em;
+    margin-bottom: 1em;
+}
+
+.head .col {
+    position: sticky;
+}
+
+.col {
+    background-color: rgba(128, 128, 128, 0.329);
+    padding: 0.5em;
+}
+
+.col:first-child {
+    border-top-left-radius: 1em;
+    border-bottom-left-radius: 1em;
+}
+
+.col:last-child {
+    border-bottom-right-radius: 1em; 
+    border-top-right-radius: 1em; 
+}
+
+.col:hover {
+    cursor: pointer;
+}
+
+/* .row:nth-child(odd) .td {
+    background-color:gray
+} */
+.row:nth-child(even) .td {
+    background-color: rgba(128, 128, 128, 0.301);
+}
+
+.row:nth-child(even) .td:first-child {
+    background-color: rgba(128, 128, 128, 0.301);
+    border-top-left-radius: 1em;
+    border-bottom-left-radius: 1em;
+}
+
+.row:nth-child(even) .td:last-child {
+    background-color: rgba(128, 128, 128, 0.301);
+    border-top-right-radius: 1em;
+    border-bottom-right-radius: 1em;
+}
+
+.row {
+    transition: transform .2s;
+}
+
+.row:hover {
+    transform: scale(1.05);
 }

@@ -64,7 +64,7 @@ function getWeather() {
     <div className={`container ${styles.weatherContainer}`}>
         <div className="row">
             {
-                forecast?.map((forecast, index) => (
+                forecast && forecast?.map((forecast, index) => (
                     <div className={`col ${styles.weatherIndividual}`} key={index}>
                         <Forecast day={forecast}/>
                     </div>

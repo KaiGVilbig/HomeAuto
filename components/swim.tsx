@@ -1,5 +1,5 @@
 "use client"
-import { useState } from 'react'
+import React, { useState } from 'react'
 import {Modal, SwimTable, AddTimeForm} from '@/components'
 import style from '@/styles/Swim.module.css'
 
