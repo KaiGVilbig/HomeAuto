@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from 'react'
 import "bootstrap/dist/css/bootstrap.min.css"; // Import bootstrap CSS
 import styles from '@/styles/Weather.module.css'
-import Axios from './axiosReq'
-import Forecast from './forecast'
+import Axios from './Axios'
+import Forecast from './Forecast'
 
 function getWeather() {
 

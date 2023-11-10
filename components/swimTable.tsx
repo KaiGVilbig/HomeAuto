@@ -20,7 +20,7 @@ const headers = [
     {key: "date", label: "DATE"},
     {key: "age", label:  "AGE"}]
 
-function swimTable() {
+export function swimTable() {
 
     const [times, setTimes] = useState<Array<timeForm>>([])
     const [gotTimes, setGotTest] = useState<boolean>(false)

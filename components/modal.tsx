@@ -1,8 +1,8 @@
 import { Dialog } from "@headlessui/react";
 import { useRef } from "react";
-import style from'@/styles/Modal.module.css'
+import style from '@/styles/Modal.module.css'
 
-export function Modal({ onClose = () => {}, children }) {
+export default function Modal({ onClose = () => {}, children }) {
   let overlayRef = useRef<HTMLInputElement>(null);
 
   return (

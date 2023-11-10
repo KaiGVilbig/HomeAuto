@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import Image from 'next/image'
-import * as icons from '../icons/weather/animated'
+import * as icons from '@/icons/weather/animated'
 import styles from '@/styles/Weather.module.css'
 
 const weatherApi: string = "https://api.weather.gov/icons/land"

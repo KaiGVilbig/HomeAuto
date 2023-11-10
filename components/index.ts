@@ -1,9 +1,9 @@
-import Weather from './getWeather'
-import Axios from './axiosReq'
-import Swim from './swim'
-import {Modal} from './modal'
-import AddTimeForm from './addTimeForm'
-import SwimTable from './swimTable'
+import Weather from './Weather'
+import Axios from './Axios'
+import Swim from './Swim'
+import Modal from './Modal'
+import AddTimeForm from './AddTimeForm'
+import SwimTable from './SwimTable'
 
 export {
     Weather,

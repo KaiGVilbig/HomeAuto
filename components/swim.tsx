@@ -1,6 +1,8 @@
 "use client"
 import React, { useState } from 'react'
-import {Modal, SwimTable, AddTimeForm} from '@/components'
+import Modal from '@/components/Modal'
+import SwimTable from '@/components/SwimTable'
+import AddTimeForm from '@/components/AddTimeForm'
 import style from '@/styles/Swim.module.css'
 
 function swim() {

@@ -1,4 +1,4 @@
-import { connectMongo } from "@/utils"
+import { connectMongo } from "@/utils/connectMongo"
 import { Time } from "@/models"
 import { timeForm } from "@/interfaces"
 

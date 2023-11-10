@@ -1,14 +1,15 @@
 import Image from 'next/image'
 import "bootstrap/dist/css/bootstrap.min.css"; // Import bootstrap CSS
 // import "./globals.css";
-import styles from '@/styles/Home.module.css'
-import { Weather, Swim } from '../components'
-
+import style from '@/styles/Home.module.css'
+// import { Weather, Swim } from '@/components'
+import Weather from '@/components/Weather'
+import Swim from '@/components/Swim'
 
 export default function Home() {
   return (
     <main>
-      <h1 className={styles.title}>
+      <h1 className={style.title}>
         The Kai Kassie House&nbsp;
       </h1>
       <div className="container">
