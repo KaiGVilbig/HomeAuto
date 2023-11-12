@@ -2,10 +2,12 @@
     border: solid 2px gray;
     border-radius: 1em;
     background-color: lightgray;
+    overflow-x: scroll;
+    position: relative;
 }
 
 .title {
-    text-align: center;
+    text-align: left;
     margin-top: 1em;
     margin-bottom: 1em;
 }
@@ -64,4 +66,18 @@
 
 .row:hover {
     transform: scale(1.05);
+}
+
+.button {
+    background-color: green;
+    border-radius: 1em;
+    margin: 1em;
+    padding: 0.5em;
+    padding-left: 1em;
+    padding-right: 1em;
+    bottom: 1em;
+    width: 100px;
+    position: absolute;
+    right: 0%;
+    bottom: 80%;
 }

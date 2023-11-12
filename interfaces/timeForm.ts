@@ -1,19 +1,19 @@
 export default interface timeForm {
     _id: string;
     name: String,
-    distance: Number,
+    distance: number,
     unit: String,
     stroke: String,
     time: {
-        minutes: Number,
-        seconds: Number,
-        miliseconds: Number
+        minutes: number,
+        seconds: number,
+        miliseconds: number
     },
-    age: Number,
+    age: number,
     date: { 
-        month: Number,
-        day: Number,
-        year: Number
+        month: number,
+        day: number,
+        year: number
     },
     meet: String
 }

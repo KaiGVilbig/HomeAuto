@@ -12,18 +12,19 @@ import {
 import style from '@/styles/Swim.module.css'
 
 const headers = [
-    {key: "name", label: "NAME"}, 
-    {key: "stroke", label: "STROKE"}, 
-    {key: "distance", label: "DISTANCE"}, 
-    {key: "unit", label: "UNIT"}, 
-    {key: "time", label: "TIME"}, 
-    {key: "date", label: "DATE"},
-    {key: "age", label:  "AGE"}]
+    {key: "name", label: "NAME", sortDir: false}, 
+    {key: "stroke", label: "STROKE", sortDir: false}, 
+    {key: "distance", label: "DISTANCE", sortDir: false}, 
+    {key: "unit", label: "UNIT", sortDir: false}, 
+    {key: "time", label: "TIME", sortDir: false}, 
+    {key: "date", label: "DATE", sortDir: false},
+    {key: "age", label:  "AGE", sortDir: false}]
 
 export function swimTable() {
 
     const [times, setTimes] = useState<Array<timeForm>>([])
-    const [gotTimes, setGotTest] = useState<boolean>(false)
+    const [gotTimes, setGotTime] = useState<boolean>(false)
+    const [sort, setSort] = useState<string>('name')
 
     useEffect(() => {
         if (gotTimes) return;
@@ -35,18 +36,67 @@ export function swimTable() {
                 }, 
             })
             let ret = res.json().then((data) => {
-                console.log(data)
+                data.formatted.sort((a: timeForm, b: timeForm) => (a.name < b.name ? 1 : -1))
                 setTimes(data.formatted)
             })
 
-            setGotTest(true)
+            setGotTime(true)
         }
 
         getTimes()
     }, [times, gotTimes])
 
-    const handleSort = (sortBy: string) => {
-        console.log(sortBy)
+    const sortDir = (a: any, b: any, dir: boolean) => {
+        return dir ? (a > b ? 1 : -1) : (a < b ? 1 : -1);
+    }
+
+    useEffect(() => {
+        console.log(times)
+    }, [times])
+
+    const handleSort = (sortBy: keyof timeForm, index: number) => {
+        setSort(sortBy)
+        
+        switch(sortBy) {
+            case headers[0].key:
+            case headers[1].key:
+            case headers[2].key:
+            case headers[3].key:
+            case headers[6].key:
+                setTimes((data) => {
+                    const dataToSort = [...data]
+                    dataToSort.sort((a, b) => sortDir(a[sortBy],  b[sortBy], headers[index].sortDir))
+                    return dataToSort
+                })
+                headers[index].sortDir = !headers[index].sortDir
+                break;
+            case headers[4].key:
+                setTimes((data) => {
+                    const dataToSort = [...data]
+                    dataToSort.sort((a, b) => {
+                        let totalTimeA: number = a.time.minutes * 60 + a.time.seconds + a.time.miliseconds / 100;
+                        let totalTimeB: number = b.time.minutes * 60 + b.time.seconds + b.time.miliseconds / 100;
+
+                        return sortDir(totalTimeA, totalTimeB, headers[index].sortDir)
+                    })
+                    return dataToSort
+                })
+                headers[index].sortDir = !headers[index].sortDir
+                break;
+            case headers[5].key:
+                setTimes((data) => {
+                    const dataToSort = [...data]
+                    dataToSort.sort((a, b) => {
+                        let tmpA: number = a.date.year * 10000 + a.date.month * 100 + a.date.day
+                        let tmpB: number = b.date.year * 10000 + b.date.month * 100 + b.date.day
+
+                        return sortDir(tmpA, tmpB, headers[index].sortDir)
+                    })
+                    return dataToSort
+                })
+                headers[index].sortDir = !headers[index].sortDir
+                break;
+        }
     }
 
     const classNames = useMemo(
@@ -61,7 +111,9 @@ export function swimTable() {
     return (
         <Table removeWrapper classNames={classNames}>
             <TableHeader columns={headers}>
-                {(column) => <TableColumn key={column.key} className={style.col}>{column.label}</TableColumn>}
+                {headers.map((h, index) => <TableColumn key={h.key} className={style.col} onClick={() => handleSort(h.key as keyof timeForm, index)}>
+                    {h.label}&nbsp;{h.sortDir ? sort === h.key ? '▲' : '' : sort === h.key ? '▼' : ''}
+                </TableColumn>)}
             </TableHeader>
             <TableBody className={style.bod}>
                 {times.map((time, index) =>

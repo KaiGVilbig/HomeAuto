@@ -21,12 +21,13 @@ function swim() {
             <div className={`container ${style.swimContainer}`}>
                 <div className="row">
                     <h3 className={style.title}>Masters Times</h3>
+                    
                 </div>
                 <div className="row">
                     <SwimTable />
                 </div>
-                <div className="row">
-                    <button className="btn btn-success" onClick={() => handleAddTime()}>+</button>
+                <div className={`row`}>
+                    <button className={`btn btn-success ${style.button}`} onClick={() => handleAddTime()}>+</button>
                 </div>
             </div>
         </div>
