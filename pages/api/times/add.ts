@@ -1,4 +1,4 @@
-import { connectMongo } from "@/utils/connectMongo"
+import { connectMongoSwim } from "@/utils/connectMongo"
 import { Time } from "@/models"
 
 /**
@@ -10,7 +10,7 @@ import { Time } from "@/models"
 export default async function addTime(req: any, res: any) {
 
     console.log('Connecting to DB')
-    await connectMongo()
+    let db = await connectMongoSwim()
     console.log('Connected to DB')
     console.log('Sending')
     let sendJSON = req.body.formData
@@ -18,6 +18,6 @@ export default async function addTime(req: any, res: any) {
     delete sendJSON[key]
     const time = await Time.create(sendJSON)
     console.log('Sent')
-
+    db.connection.close()
     res.json({ time })
 }

@@ -1,4 +1,4 @@
-import { connectMongo } from "@/utils/connectMongo"
+import { connectMongoSwim } from "@/utils/connectMongo"
 import { Time } from "@/models"
 
 /**
@@ -11,7 +11,7 @@ import { Time } from "@/models"
 export default async function modifyTime(req: any, res: any) {
 
     console.log('Connecting to DB')
-    await connectMongo()
+    let db = await connectMongoSwim()
     console.log('Connected to DB')
     console.log('Getting')
     const time = await Time.findOne(req.body, async (err: any, time: any) => {
@@ -24,6 +24,7 @@ export default async function modifyTime(req: any, res: any) {
         await time.save()
     })
     console.log('Got')
+    db.connection.close()
 
     res.json({ time })
 }

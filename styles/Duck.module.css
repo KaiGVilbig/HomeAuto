@@ -1,0 +1,35 @@
+.DuckContainer {
+    border: solid 2px gray;
+    border-radius: 1em;
+    background-color: lightgray;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    height: 15%;
+    position: relative;
+}
+
+.item {
+    margin-bottom: 10px;
+    padding-left: 0 !important;
+    border-radius: 1em;
+}
+
+.item:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    background-color: darkgrey !important;
+}
+
+.item:nth-child(even) {
+    background-color: rgba(128, 128, 128, 0.301);
+}
+
+.item:focus {
+    outline: none;
+}
+
+.avatar {
+    border-radius: 1em;
+    left: 0;
+    max-width: 10em;
+}

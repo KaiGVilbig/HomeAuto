@@ -23,6 +23,7 @@ function forecast(day : any) {
     }
 
     const getIcon: any = (iconUrl: string) => {
+        if (!iconUrl) return;
         let modUrl = iconUrl.replace(weatherApi, '')
         modUrl = modUrl.substring(modUrl.indexOf('?'), -1)
 

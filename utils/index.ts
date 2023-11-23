@@ -1,5 +1,6 @@
-import {connectMongo} from './connectMongo'
+import {connectMongoSwim, connectMongoDuck} from './connectMongo'
 
 export {
-    connectMongo
+    connectMongoSwim,
+    connectMongoDuck
 }

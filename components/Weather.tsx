@@ -55,6 +55,8 @@ function getWeather() {
                     })
                     setGotWeather(true)
                 }
+            }).catch((err) => {
+                console.log(err)
             })
         }
     }, [weatherApi, gotWeather, forecastWeatherUrl])
