@@ -22,7 +22,7 @@ function swim() {
             <div className={`container ${style.swimContainer}`}>
                 <div className="row">
                     <h3 className={style.title}>
-                       <Link href="/Masters" className={style.link}> Masters Times</Link>
+                       <Link href="/masters" className={style.link}> Masters Times</Link>
                     </h3>
                 </div>
                 <div className="row">

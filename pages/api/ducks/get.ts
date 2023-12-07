@@ -2,7 +2,6 @@ import { connectMongoDuck } from "@/utils/connectMongo"
 import { Duck } from "@/models"
 import { duck } from "@/interfaces"
 import mongoose from "mongoose"
-import DuckInt from "@/interfaces/duck"
 
 /**
  * 

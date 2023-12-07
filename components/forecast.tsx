@@ -146,9 +146,9 @@ function forecast(day : any) {
         else {
             setShowDay(
                 <div>
-                    {getIcon(dayToShow[0].icon)}
-                    <p>{dayToShow[0].shortForecast}</p>
-                    <p>{dayToShow[0].temperature}°</p>
+                    {getIcon(dayToShow[0]?.icon)}
+                    <p>{dayToShow[0]?.shortForecast}</p>
+                    <p>{dayToShow[0]?.temperature}°</p>
                 </div>
             )
         }
