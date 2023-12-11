@@ -5,6 +5,7 @@ import Modal from './Modal'
 import AddTimeForm from './AddTimeForm'
 import SwimTable from './SwimTable'
 import CheckLeekDuck from './CheckLeekDuck'
+import Chart from './Chart'
 
 export {
     Weather,
@@ -13,5 +14,6 @@ export {
     Modal,
     AddTimeForm,
     SwimTable,
-    CheckLeekDuck
+    CheckLeekDuck,
+    Chart
 }

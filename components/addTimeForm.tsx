@@ -2,6 +2,9 @@
 import React, { useState } from 'react'
 import { timeForm } from '@/interfaces'
 import style from '@/styles/TimeForm.module.css'
+import { setTimes } from '@/pages/redux/features/swimSlices'
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '@/pages/redux/store';
 
 function addTimeForm(props: any) {
 
@@ -10,6 +13,8 @@ function addTimeForm(props: any) {
   let distance: Array<number> = [0, 25, 50, 100, 200, 400, 500, 800, 1000, 1500, 1650]
   let strokes: Array<string> = ["", "Freestyle", "Backstroke", "Breaststroke", "Butterfly", "IM"]
   let formNames: Array<string> = ["name", "distance", "unit", "stroke", "min", "sec", "milisec", "age", "month", "date", "year", "meet"]
+
+  const dispatch = useDispatch<AppDispatch>();
 
   const [formData, setFormData] = useState<timeForm>({
     _id: "",
@@ -104,8 +109,18 @@ function addTimeForm(props: any) {
             'Content-Type': 'application/json'
         }, 
         body: JSON.stringify({formData})
-    }).then(() => props.setOpen(false))
-  }
+    }).then(async () => {
+      const res = await fetch('/api/times/get', { 
+        method: 'GET', 
+        headers: {
+            'Content-Type': 'application/json'
+        }, 
+      })
+      let ret = res.json().then((data) => {
+          data.formatted.sort((a: timeForm, b: timeForm) => (a.name < b.name ? 1 : -1))
+          dispatch(setTimes(data.formatted))
+      })
+    }).then(() => props.setOpen(false))}
 
   return (
     <form className={style.form} onSubmit={onSubmit}>

@@ -2,8 +2,29 @@
     padding: 1em;
 }
 
+.cont {
+    margin: 0;
+    width: 100% !important;
+}
+
 .title {
     text-align: center;
     margin: .5em;
     padding: 1em;
+}
+
+.events {
+    margin: 1em;
+    margin-top: 2em;
+}
+
+.chart {
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom: 2em;
+}
+
+.table {
+    width: 50%;
+    margin: 0 auto;
 }

@@ -10,6 +10,9 @@ import {
     TableCell
   } from "@nextui-org/react";
 import style from '@/styles/Swim.module.css'
+import { setTimes } from '@/pages/redux/features/swimSlices'
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '@/pages/redux/store';
 
 const headers = [
     {key: "name", label: "NAME", sortDir: false}, 
@@ -22,9 +25,11 @@ const headers = [
 
 export function swimTable() {
 
-    const [times, setTimes] = useState<Array<timeForm>>([])
+    const [times, setTime] = useState<Array<timeForm>>([])
     const [gotTimes, setGotTime] = useState<boolean>(false)
     const [sort, setSort] = useState<string>('name')
+
+    const dispatch = useDispatch<AppDispatch>();
 
     useEffect(() => {
         if (gotTimes) return;
@@ -37,7 +42,8 @@ export function swimTable() {
             })
             let ret = res.json().then((data) => {
                 data.formatted.sort((a: timeForm, b: timeForm) => (a.name < b.name ? 1 : -1))
-                setTimes(data.formatted)
+                dispatch(setTimes(data.formatted))
+                setTime(data.formatted)
             })
 
             setGotTime(true)
@@ -50,10 +56,6 @@ export function swimTable() {
         return dir ? (a > b ? 1 : -1) : (a < b ? 1 : -1);
     }
 
-    useEffect(() => {
-        console.log(times)
-    }, [times])
-
     const handleSort = (sortBy: keyof timeForm, index: number) => {
         setSort(sortBy)
         
@@ -63,7 +65,7 @@ export function swimTable() {
             case headers[2].key:
             case headers[3].key:
             case headers[6].key:
-                setTimes((data) => {
+                setTime((data) => {
                     const dataToSort = [...data]
                     dataToSort.sort((a, b) => sortDir(a[sortBy],  b[sortBy], headers[index].sortDir))
                     return dataToSort
@@ -71,7 +73,7 @@ export function swimTable() {
                 headers[index].sortDir = !headers[index].sortDir
                 break;
             case headers[4].key:
-                setTimes((data) => {
+                setTime((data) => {
                     const dataToSort = [...data]
                     dataToSort.sort((a, b) => {
                         let totalTimeA: number = a.time.minutes * 60 + a.time.seconds + a.time.miliseconds / 100;
@@ -84,7 +86,7 @@ export function swimTable() {
                 headers[index].sortDir = !headers[index].sortDir
                 break;
             case headers[5].key:
-                setTimes((data) => {
+                setTime((data) => {
                     const dataToSort = [...data]
                     dataToSort.sort((a, b) => {
                         let tmpA: number = a.date.year * 10000 + a.date.month * 100 + a.date.day
